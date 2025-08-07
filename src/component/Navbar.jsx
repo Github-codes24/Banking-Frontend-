@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -11,6 +11,7 @@ const Navbar = () => {
   });
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -19,7 +20,6 @@ const Navbar = () => {
   }, []);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-
   const toggleDropdown = (key) => {
     setDropdowns((prev) => ({
       ...prev,
@@ -43,9 +43,7 @@ const Navbar = () => {
       { name: "Recurring Deposit Plan", path: "/scheme/Fixed/2" },
       { name: "Monthly Income Plan", path: "/scheme/Fixed/3" },
     ],
-    legal: [
-      { name: "Legal Documents", path: "/legalDocs" },
-    ],
+    legal: [{ name: "Legal Documents", path: "/legalDocs" }],
     gallery: [
       { name: "Our Society", path: "/gallery/society/1" },
       { name: "Our Employees", path: "/gallery/employee/2" },
@@ -74,22 +72,32 @@ const Navbar = () => {
       </div>
 
       {/* Menu Items */}
-      <ul className={`text-[13px] md:text-sm font-semibold flex-col md:flex-row md:flex justify-center md:flex-wrap ${mobileMenuOpen ? "flex" : "hidden"} md:block`}>
+      <ul
+        className={`text-[13px] md:text-sm font-semibold flex-col md:flex-row md:flex justify-center md:flex-wrap ${
+          mobileMenuOpen ? "flex" : "hidden"
+        } md:block`}
+      >
         {menuItems.map((item, idx) => {
           const hasDropdown = item.isDropdown;
           const dropdownKey = item.key;
+
+          const isActive =
+            location.pathname === item.path ||
+            (hasDropdown && location.pathname.startsWith(item.path));
 
           return (
             <li
               key={idx}
               className={`relative px-4 py-2 border-b md:border-b-0 md:border-r border-yellow-300 hover:bg-yellow-200 ${
-                idx === 0 ? "text-red-600" : "text-gray-800"
+                isActive ? "text-red-600" : "text-gray-800"
               }`}
               onMouseEnter={() => {
-                if (!isMobile && hasDropdown) setDropdowns((prev) => ({ ...prev, [dropdownKey]: true }));
+                if (!isMobile && hasDropdown)
+                  setDropdowns((prev) => ({ ...prev, [dropdownKey]: true }));
               }}
               onMouseLeave={() => {
-                if (!isMobile && hasDropdown) setDropdowns((prev) => ({ ...prev, [dropdownKey]: false }));
+                if (!isMobile && hasDropdown)
+                  setDropdowns((prev) => ({ ...prev, [dropdownKey]: false }));
               }}
             >
               {hasDropdown ? (
