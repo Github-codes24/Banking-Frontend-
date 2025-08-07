@@ -18,24 +18,27 @@ const Crousal = () => {
 
   return (
     <div className="bg-white h-[158px] w-full md:h-[400px] flex items-center justify-center">
-      <div className="w-full ">
+      <div className="w-full h-full">
         <Slider {...settings}>
-          <div className="h-[150px] md:h-[400px] bg-gray-100 flex items-center justify-center">
+          <div className="h-[150px] w-full md:h-[400px]">
             <img
               src="/slider-1.jpg"
               alt=""
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="h-[150px] md:h-[400px] bg-gray-200 flex items-center justify-center">
+          <div className="h-[150px] w-full md:h-[400px]">
             <img
               src="/slider-2.jpg"
               alt=""
+              className="w-full h-full object-cover"
             />
           </div>
-          <div className="h-[150px]md:h-[400px] bg-gray-300 flex items-center justify-center">
+          <div className="h-[150px] w-full md:h-[400px]">
             <img
               src="/slider-3.jpg"
               alt=""
+              className="w-full h-full object-cover"
             />
           </div>
         </Slider>
