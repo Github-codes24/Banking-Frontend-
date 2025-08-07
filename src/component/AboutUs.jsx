@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="mt-10">
+    <div className="">
       {/* Header Image - Full Width */}
       <div className="w-full">
         <img

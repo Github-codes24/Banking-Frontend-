@@ -2,7 +2,7 @@ import React from 'react';
 
 const SchemeDetails = () => {
   return (
-    <div className="pt-16">
+    <div className="">
       {/* Header Image */}
       <div className="w-full h-64 md:h-96">
         <img
