@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import logo from "../assets/logo2.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +33,12 @@ const Navbar = () => {
     { name: "ABOUT US", path: "/about-us" },
     { name: "SCHEMES", path: "/schemes", isDropdown: true, key: "scheme" },
     { name: "LEGAL", path: "/legalDocs", isDropdown: true, key: "legal" },
-    { name: "GALLERY", path: "/gallery/society/1", isDropdown: true, key: "gallery" },
+    {
+      name: "GALLERY",
+      path: "/gallery/society/1",
+      isDropdown: true,
+      key: "gallery",
+    },
     { name: "CAREER", path: "/careers" },
     { name: "CONTACT US", path: "/contact" },
   ];
@@ -63,60 +69,84 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#ffe170] border-t border-b border-yellow-300 relative z-50">
-      {/* Mobile Hamburger */}
-      <div className="md:hidden flex justify-between items-center px-4 py-2">
-        <div className="text-lg font-bold text-red-600">Menu</div>
-        <button onClick={toggleMobileMenu}>
-          {mobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-        </button>
+      {/* Top bar with Logo + Menu */}
+      <div className="flex justify-between items-center px-4 py-2">
+        {/* Logo */}
+        <img
+          src={logo}
+          alt="Logo"
+          style={{ height: "100px", width: "100px"  }} // adjust as needed
+          className="object-contain"
+        />
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={toggleMobileMenu}>
+            {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+
+        {/* Desktop Menu */}
+        <ul
+          className={`hidden md:flex text-[13px] md:text-sm font-semibold flex-row flex-wrap ml-6`}
+        >
+          {menuItems.map((item, idx) => {
+            const hasDropdown = item.isDropdown;
+            const dropdownKey = item.key;
+
+            const isActive =
+              location.pathname === item.path ||
+              (hasDropdown && location.pathname.startsWith(item.path));
+
+            return (
+              <li
+                key={idx}
+                className={`relative px-4 py-2 border-l border-yellow-300 hover:bg-yellow-200 ${
+                  isActive ? "text-red-600" : "text-gray-800"
+                }`}
+                onMouseEnter={() => {
+                  if (!isMobile && hasDropdown)
+                    setDropdowns((prev) => ({ ...prev, [dropdownKey]: true }));
+                }}
+                onMouseLeave={() => {
+                  if (!isMobile && hasDropdown)
+                    setDropdowns((prev) => ({ ...prev, [dropdownKey]: false }));
+                }}
+              >
+                {hasDropdown ? (
+                  <div
+                    className="flex items-center gap-1 cursor-pointer"
+                    onClick={() => isMobile && toggleDropdown(dropdownKey)}
+                  >
+                    <span>{item.name}</span>
+                    <FaChevronDown className="text-[10px] mt-0.5" />
+                  </div>
+                ) : (
+                  <Link to={item.path}>{item.name}</Link>
+                )}
+
+                {hasDropdown &&
+                  dropdowns[dropdownKey] &&
+                  renderDropdown(dropdownItems[dropdownKey])}
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
-      {/* Menu Items */}
-      <ul
-        className={`text-[13px] md:text-sm font-semibold flex-col md:flex-row md:flex justify-center md:flex-wrap ${
-          mobileMenuOpen ? "flex" : "hidden"
-        } md:block`}
-      >
-        {menuItems.map((item, idx) => {
-          const hasDropdown = item.isDropdown;
-          const dropdownKey = item.key;
-
-          const isActive =
-            location.pathname === item.path ||
-            (hasDropdown && location.pathname.startsWith(item.path));
-
-          return (
+      {/* Mobile Menu Items (below logo when open) */}
+      {mobileMenuOpen && (
+        <ul className="flex flex-col text-[13px] md:hidden font-semibold border-t border-yellow-300">
+          {menuItems.map((item, idx) => (
             <li
               key={idx}
-              className={`relative px-4 py-2 border-b md:border-b-0 md:border-r border-yellow-300 hover:bg-yellow-200 ${
-                isActive ? "text-red-600" : "text-gray-800"
-              }`}
-              onMouseEnter={() => {
-                if (!isMobile && hasDropdown)
-                  setDropdowns((prev) => ({ ...prev, [dropdownKey]: true }));
-              }}
-              onMouseLeave={() => {
-                if (!isMobile && hasDropdown)
-                  setDropdowns((prev) => ({ ...prev, [dropdownKey]: false }));
-              }}
+              className="px-4 py-2 border-b border-yellow-300 hover:bg-yellow-200 text-gray-800"
             >
-              {hasDropdown ? (
-                <div
-                  className="flex items-center gap-1 cursor-pointer"
-                  onClick={() => isMobile && toggleDropdown(dropdownKey)}
-                >
-                  <span>{item.name}</span>
-                  <FaChevronDown className="text-[10px] mt-0.5" />
-                </div>
-              ) : (
-                <Link to={item.path}>{item.name}</Link>
-              )}
-
-              {hasDropdown && dropdowns[dropdownKey] && renderDropdown(dropdownItems[dropdownKey])}
+              <Link to={item.path}>{item.name}</Link>
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
