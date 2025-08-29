@@ -61,8 +61,8 @@ const Footer = () => {
             Connect With Us
           </h2>
           <p className="text-sm mb-2 ">
-            Gandhi ward manohar chouk amgao road Gondia Near pratap lawn in
-            front of centure bar
+            Gandhi Ward, Manohar Chowk, Amgaon Road, Near Pratap Lawn, In Front
+            of Centure Bar, Gondia, Maharashtra – India
           </p>
           <p className="text-sm mb-2">Email: maaanusaya5@gmail.com</p>
           <p className="text-sm mb-4">Phone: +91 8766081543</p>

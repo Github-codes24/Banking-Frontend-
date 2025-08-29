@@ -1,48 +1,118 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  faEnvelope,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ContactUs = () => {
+function ContactUs() {
+  useEffect(() => {
+    document.title = "Jain Trade Links | Contact";
+  }, []);
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-10 pb-2">
-        Contact Us
-      </h1>
+    <div className="bg-[#f7f9fc] text-gray-700 font-sans">
+      {/* Banner */}
+      <div className="h-64 md:h-80 bg-gradient-to-r from-[#E8DACD] to-[#f7c948] flex items-center px-6 md:px-12 lg:px-32">
+        <div className="text-black">
+          <h1 className="text-3xl md:text-5xl lg:text-[4rem] font-bold">
+            Get in Touch
+          </h1>
+          <p className="text-[#6c9055f5] text-base md:text-lg mt-2">
+            We're here to assist you with all your banking queries
+          </p>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left Side - Contact Info */}
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-xl font-semibold">Office Address</h2>
-            <p>
-              Ghandhi ward<br />
-             Manihar Chowk,<br />
-             Gondiya
+      {/* Content */}
+      <div className="flex flex-col md:flex-row justify-center gap-10 py-16 px-4">
+        {/* Left: Contact Info */}
+        <div className="flex-1 max-w-md space-y-4 mx-auto">
+          <h2 className="text-[#6c9055f5] font-medium text-2xl md:text-4xl mb-6 text-left">
+            Contact Information
+          </h2>
+
+          <div className="space-y-4">
+            <p className="flex items-start gap-2">
+              <span className="w-6 flex justify-center">
+                <FontAwesomeIcon icon={faLocationDot} className="text-base" />
+              </span>
+              <span>
+                Gandhi Ward, Manohar Chowk, Amgaon Road, Near Pratap Lawn, In
+                Front of Centure Bar, Gondia, Maharashtra – India
+              </span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="w-6 flex justify-center">
+                <FontAwesomeIcon icon={faPhone} className="text-base" />
+              </span>
+              <span>+91 8766081543</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="w-6 flex justify-center">
+                <FontAwesomeIcon icon={faEnvelope} className="text-base" />
+              </span>
+              <span>maaanusaya5@gmail.com</span>
             </p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-semibold">Email</h2>
-            <p className="text-blue-600 underline">contact@bagherwalsamaj.org</p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold">Contact Number</h2>
-            <p>+91 9876543210</p>
+          {/* Map */}
+          <div style={{ width: "100%", height: "400px" }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3713.369127214954!2d80.19626877526842!3d21.454028380303868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI3JzE0LjUiTiA4MMKwMTEnNTUuOCJF!5e0!3m2!1sen!2sin!4v1756470404001!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
 
-        {/* Right Side - Google Map */}
-        <div className="w-full h-[300px]">
-          <iframe
-            title="Bagherwal Samaj Location"
-            className="w-full h-full border rounded"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.7595449871914!2d75.7885!3d26.9124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db5d8e218ad07%3A0x1b53f31c08e5bfe3!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1691423442800!5m2!1sen!2sin"
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
+        {/* Right: Contact Form */}
+        <div className="flex-1 max-w-lg bg-white p-6 md:p-8 shadow-md mx-auto">
+          <h2 className="text-[#6c9055f5] font-medium text-2xl md:text-4xl mb-6 text-left">
+            Send us a Message
+          </h2>
+          <form className="flex flex-col space-y-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6c9055f5]"
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6c9055f5]"
+            />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              className="border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6c9055f5]"
+            />
+            <input
+              type="text"
+              placeholder="Subject"
+              className="border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6c9055f5]"
+            />
+            <textarea
+              placeholder="Your Message..."
+              rows="5"
+              className="border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6c9055f5]"
+            ></textarea>
+            <button
+              type="button"
+              className="px-6 py-3 bg-[#6c9055f5] text-white hover:bg-[#687b5b] transition w-fit mx-auto"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default ContactUs;

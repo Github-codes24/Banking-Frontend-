@@ -39,7 +39,7 @@ const Navbar = () => {
       isDropdown: true,
       key: "gallery",
     },
-    { name: "CAREER", path: "/careers" },
+
     { name: "CONTACT US", path: "/contact" },
   ];
 
@@ -58,7 +58,7 @@ const Navbar = () => {
   };
 
   const renderDropdown = (items) => (
-    <ul className="pl-4 md:absolute md:left-0 md:top-full md:w-56 bg-white md:shadow-md border border-yellow-300 z-50">
+    <ul className="pl-4 md:absolute md:left-0 md:top-full md:w-56 bg-white md:shadow-md border border-yellow-400 z-50">
       {items.map((sub, idx) => (
         <li key={idx} className="px-4 py-2 text-gray-700 hover:bg-yellow-50">
           <Link to={sub.path}>{sub.name}</Link>
@@ -68,14 +68,14 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#ffe170] border-t border-b border-yellow-300 relative z-50">
+    <div className="bg-yellow-400 border-t border-b border-yellow-500 relative z-50">
       {/* Top bar with Logo + Menu */}
       <div className="flex justify-between items-center px-4 py-2">
         {/* Logo */}
         <img
           src={logo}
           alt="Logo"
-          style={{ height: "100px", width: "100px"  }} // adjust as needed
+          style={{ height: "120px", width: "140px" }} // adjust as needed
           className="object-contain"
         />
 
