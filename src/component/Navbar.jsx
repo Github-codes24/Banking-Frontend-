@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/logo2.png";
+import axios from "axios";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,6 +29,34 @@ const Navbar = () => {
     }));
   };
 
+
+
+ const [schemes, setschemes] = useState([]);
+ const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSchmes = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/admin/get`
+        );
+        if (res.data.success) {
+          setschemes(res.data.data.schemes); // adjust key based on backend response
+          setGallery(res.data.data.gallery); // adjust key based on backend response
+        }
+      } catch (err) {
+        console.error("Error fetching banners:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSchmes();
+  }, []);
+
+  
+
   const menuItems = [
     { name: "HOME", path: "/" },
     { name: "ABOUT US", path: "/about-us" },
@@ -44,17 +73,15 @@ const Navbar = () => {
   ];
 
   const dropdownItems = {
-    scheme: [
-      { name: "Fixed Deposit Plan", path: "/scheme/Fixed/1" },
-      { name: "Recurring Deposit Plan", path: "/scheme/Fixed/2" },
-      { name: "Monthly Income Plan", path: "/scheme/Fixed/3" },
-    ],
+    scheme: schemes?.map((s, idx) => ({
+      name: s.name,
+      path: `/scheme/${s.name}/${s._id}`,
+    })),
     legal: [{ name: "Legal Documents", path: "/legalDocs" }],
-    gallery: [
-      { name: "Our Society", path: "/gallery/society/1" },
-      { name: "Our Employees", path: "/gallery/employee/2" },
-      { name: "Others", path: "/gallery/others/3" },
-    ],
+    gallery: gallery?.map((g, idx) => ({
+      name: g.category || `Gallery ${idx + 1}`,
+      path: `/gallery/${g.category}/${g._id}`,
+    })),
   };
 
   const renderDropdown = (items) => (

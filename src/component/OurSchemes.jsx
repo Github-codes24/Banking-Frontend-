@@ -1,35 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FaFilePdf } from "react-icons/fa";
-
-const schemes = [
-  {
-    title: "Savings Account",
-    image: "/slider-2.jpg",
-    pdf: "/pdfs/savings.pdf",
-  },
-  {
-    title: "Fixed Deposit",
-    image: "/slider-1.jpg",
-    pdf: "/pdfs/fixed-deposit.pdf",
-  },
-  {
-    title: "Recurring Deposit",
-    image: "/slider-3.jpg",
-    pdf: "/pdfs/recurring-deposit.pdf",
-  },
-  {
-    title: "Recurring Deposit Plus",
-    image: "/slider-1.jpg",
-    pdf: "/pdfs/recurring-deposit.pdf",
-  },
-  {
-    title: "Special Deposit Plan",
-    image: "/slider-2.jpg",
-    pdf: "/pdfs/recurring-deposit.pdf",
-  },
-];
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const OurSchemes = () => {
+  const [schemes, setSchemes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSchemes = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/admin/get`
+        );
+        if (res.data.success) {
+          setSchemes(res.data.data.schemes); // adjust key based on backend response
+        }
+      } catch (err) {
+        console.error("Error fetching banners:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSchemes();
+  }, []);
+
   return (
     <div className="relative py-16 px-6 md:px-12 bg-gradient-to-r from-[#fdf2f8] via-[#E3B7B4] to-[#e0f2fe]">
       <div className="max-w-7xl mx-auto text-center">
@@ -38,43 +34,59 @@ const OurSchemes = () => {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {schemes.map((scheme, index) => (
-            <div
-              key={index}
-              className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              {/* Image */}
-              <div className="relative w-full h-56 overflow-hidden">
-                <img
-                  src={scheme.image}
-                  alt={scheme.title}
-                  className="w-full h-full object-cover transform hover:scale-110 transition duration-500"
-                />
-                {/* Title Overlay */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
-                  <h3 className="text-xl font-semibold text-white text-left">
-                    {scheme.title}
-                  </h3>
+          {schemes.length > 0 && schemes.map((scheme, index) => {
+            // Description handling
+            const descWords = (scheme.desc ?? "").split(" ");
+            const shortDesc = descWords.slice(0, 50).join(" ");
+            const showReadMore = descWords.length > 50;
+
+            return (
+              <div
+                key={index}
+                className="flex flex-col h-full bg-white/90 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+              >
+                {/* Image */}
+                <div className="relative w-full h-56 overflow-hidden">
+                  <img
+                    src={scheme.logo}
+                    alt={scheme.name}
+                    className="w-full h-full object-contain transform hover:scale-110 transition duration-500"
+                  />
+                  {/* Title Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4">
+                    <h3 className="text-xl font-semibold text-white text-left">
+                      {scheme.name}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 flex flex-col p-6">
+                  <div className="mb-4 text-gray-600 text-sm text-center">
+                    {shortDesc}
+                    {showReadMore && (
+                      <Link
+                        to={`/scheme/${scheme.name}/${scheme._id}`} // Prefer _id if available
+                        className="ml-2 text-blue-600 underline hover:text-blue-800 focus:outline-none"
+                      >
+                        Read more
+                      </Link>
+                    )}
+                  </div>
+                  <div className="mt-auto flex justify-center">
+                    <a
+                      href={scheme.pdf}
+                      download
+                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 text-white font-semibold rounded-full shadow-md hover:bg-red-700 hover:scale-105 transition-all duration-300"
+                    >
+                      <FaFilePdf className="text-lg" />
+                      Download PDF
+                    </a>
+                  </div>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col items-center justify-center">
-                <p className="text-gray-600 text-sm mb-4 text-center">
-                  Explore our {scheme.title} scheme and secure your financial
-                  future.
-                </p>
-                <a
-                  href={scheme.pdf}
-                  download
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 text-white font-semibold rounded-full shadow-md hover:bg-red-700 hover:scale-105 transition-all duration-300"
-                >
-                  <FaFilePdf className="text-lg" />
-                  Download PDF
-                </a>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
