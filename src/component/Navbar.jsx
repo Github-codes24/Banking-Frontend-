@@ -162,18 +162,46 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Items (below logo when open) */}
-      {mobileMenuOpen && (
-        <ul className="flex flex-col text-[13px] md:hidden font-semibold border-t border-yellow-300">
-          {menuItems.map((item, idx) => (
-            <li
-              key={idx}
-              className="px-4 py-2 border-b border-yellow-300 hover:bg-yellow-200 text-gray-800"
-            >
-              <Link to={item.path}>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+    {/* Mobile Menu Items (below logo when open) */}
+{mobileMenuOpen && (
+  <ul className="flex flex-col text-[13px] md:hidden font-semibold border-t border-yellow-300">
+    {menuItems.map((item, idx) => {
+      const hasDropdown = item.isDropdown;
+      const dropdownKey = item.key;
+
+      return (
+        <li
+          key={idx}
+          className="px-4 py-2 border-b border-yellow-300 text-gray-800"
+        >
+          {hasDropdown ? (
+            <>
+              {/* Toggleable parent */}
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleDropdown(dropdownKey)}
+              >
+                <span>{item.name}</span>
+                <FaChevronDown
+                  className={`text-[12px] transform transition-transform ${
+                    dropdowns[dropdownKey] ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+
+              {/* Dropdown items */}
+              {dropdowns[dropdownKey] &&
+                renderDropdown(dropdownItems[dropdownKey])}
+            </>
+          ) : (
+            <Link to={item.path}>{item.name}</Link>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+)}
+
     </div>
   );
 };

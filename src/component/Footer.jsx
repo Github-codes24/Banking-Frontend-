@@ -30,7 +30,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/about-us"
                 className="hover:text-gray-900 flex items-center gap-2"
               >
                 <MdKeyboardArrowRight /> About Us
@@ -87,7 +87,7 @@ const Footer = () => {
       {/* Bottom Section */}
       <div className="bg-gray-900 text-gray-400 text-center py-4 text-sm">
         © {new Date().getFullYear()}{" "}
-        <span className="text-yellow-400 font-semibold">BankName</span>. All
+        <span className="text-yellow-400 font-semibold">Anusaya Urban</span>. All
         rights reserved. |
         <span className="hover:text-yellow-400 cursor-pointer ml-2">
           Privacy Policy
