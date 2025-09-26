@@ -1,28 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Careers = () => {
-  const careerData = [
-    {
-      title: "Assistant Manager - Operations",
-      contactPerson: "Mr. Ramesh Verma",
-      location: "Jaipur, Rajasthan",
-      contactNumber: "+91 9876543210",
-      contactEmail: "hr@example.com",
-      description:
-        "We are looking for a proactive Assistant Manager to oversee daily operations and ensure smooth process execution across departments.",
-      notificationUrl: "/docs/assistant-manager-notification.pdf", // Change as per actual file location
-    },
-    {
-      title: "Office Clerk",
-      contactPerson: "Ms. Shalini Mehra",
-      location: "Kota, Rajasthan",
-      contactNumber: "+91 9123456789",
-      contactEmail: "careers@example.com",
-      description:
-        "A diligent and detail-oriented Office Clerk is required to handle paperwork, filing, and administrative support activities.",
-      notificationUrl: "/docs/office-clerk-notification.pdf",
-    },
-  ];
+  // const careerData = [
+  //   {
+  //     title: "Assistant Manager - Operations",
+  //     contactPerson: "Mr. Ramesh Verma",
+  //     location: "Jaipur, Rajasthan",
+  //     contactNumber: "+91 9876543210",
+  //     contactEmail: "hr@example.com",
+  //     description:
+  //       "We are looking for a proactive Assistant Manager to oversee daily operations and ensure smooth process execution across departments.",
+  //     notificationUrl: "/docs/assistant-manager-notification.pdf", // Change as per actual file location
+  //   },
+  //   {
+  //     title: "Office Clerk",
+  //     contactPerson: "Ms. Shalini Mehra",
+  //     location: "Kota, Rajasthan",
+  //     contactNumber: "+91 9123456789",
+  //     contactEmail: "careers@example.com",
+  //     description:
+  //       "A diligent and detail-oriented Office Clerk is required to handle paperwork, filing, and administrative support activities.",
+  //     notificationUrl: "/docs/office-clerk-notification.pdf",
+  //   },
+  // ];
+
+const [careers, setCareers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSchmes = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/admin/get`
+        );
+        if (res.data.success) {
+          setCareers(res.data.data.careers); // adjust key based on backend response
+        }
+      } catch (err) {
+        console.error("Error fetching banners:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSchmes();
+  }, []);
+
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -31,7 +55,7 @@ const Careers = () => {
       </h1>
 
       <div className="space-y-8">
-        {careerData.map((career, index) => (
+        {careers?.map((career, index) => (
           <div
             key={index}
             className="border border-gray-300 rounded-md p-6 shadow-sm bg-white"
@@ -39,7 +63,7 @@ const Careers = () => {
             <h2 className="text-xl font-semibold text-gray-800 mb-3">
               {career.title}
             </h2>
-            <p className="text-gray-700 mb-2">{career.description}</p>
+            <p className="text-gray-700 mb-2">{career.desc||""}</p>
 
             <div className="mt-4 space-y-1 text-sm text-gray-600">
               <p>
@@ -48,11 +72,9 @@ const Careers = () => {
               <p>
                 <strong>Location:</strong> {career.location}
               </p>
+        
               <p>
-                <strong>Contact Number:</strong> {career.contactNumber}
-              </p>
-              <p>
-                <strong>Email:</strong> {career.contactEmail}
+                <strong>Email:</strong> {career.email}
               </p>
             </div>
 
@@ -61,7 +83,7 @@ const Careers = () => {
             </p>
 
             <a
-              href={career.notificationUrl}
+              href={career.docs}
               download
               className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md"
             >

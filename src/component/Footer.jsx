@@ -52,6 +52,14 @@ const Footer = () => {
                 <MdKeyboardArrowRight /> Loan Application Forms
               </Link>
             </li>
+            <li>
+              <Link
+                to="/careers"
+                className="hover:text-gray-900 flex items-center gap-2"
+              >
+                <MdKeyboardArrowRight /> Careers
+              </Link>
+            </li>
           </ul>
         </div>
 

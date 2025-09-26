@@ -29,9 +29,9 @@ const AboutUs = () => {
   const paragraphs =
     about?.desc
       ? about.desc
-          .split(/\n\s*\n|\.\s+/)
-          .map((para) => para.trim())
-          .filter(Boolean)
+        .split(/\n\s*\n|\.\s+/)
+        .map((para) => para.trim())
+        .filter(Boolean)
       : [];
 
   return (
@@ -51,15 +51,11 @@ const AboutUs = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             <span className="text-green-700 underline decoration-2 decoration-green-300">Maa Anusaya Urban</span>
           </h2>
-          <div className="prose prose-lg text-gray-700 text-left space-y-4">
-  {paragraphs.length > 0
-    ? paragraphs.map((p, idx) => (
-        <p key={idx} className="leading-relaxed indent-4">
-          {p}
-        </p>
-      ))
-    : (!loading && <p className="italic text-gray-400">No information available.</p>)}
-</div>
+          <div
+            className="text-gray-700 text-base leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: about?.desc || "N/A" }}
+          />
+
 
         </div>
         {/* Right Image */}
@@ -78,21 +74,59 @@ const AboutUs = () => {
           {/* Mission */}
           <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center md:items-start">
             <FaThumbsUp className="text-green-600 text-4xl mb-3" />
-            <h3 className="text-2xl font-semibold mb-2 text-green-800">Our Mission</h3>
-            <p className="text-gray-700 text-base leading-relaxed">
-              {about?.vision || "N/A"}
-            </p>
+            <h3 className="text-2xl font-semibold mb-2 text-green-800">Our Vision आमची दृष्टी</h3>
+            <div
+              className="text-gray-700 text-base leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: about?.vision || "N/A" }}
+            />
+
           </div>
           {/* Vision */}
           <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center md:items-start">
             <FaThumbsUp className="text-green-600 text-4xl mb-3" />
-            <h3 className="text-2xl font-semibold mb-2 text-green-800">Our Vision</h3>
+            <h3 className="text-2xl font-semibold mb-2 text-green-800">Our Mission आमचे ध्येय</h3>
             <p className="text-gray-700 text-base leading-relaxed">
-              {about?.values[0] || "N/A"}
+              <div
+                className="text-gray-700 text-base leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: about?.mission || "N/A" }}
+              />
+
             </p>
           </div>
         </div>
       </div>
+
+      {/* Core Values Section */}
+<div className="bg-white py-16">
+  <div className="max-w-6xl mx-auto px-6 text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-green-800">
+      आमचे मूल मूल्ये (Our Core Values)
+    </h2>
+
+    <ul className="grid md:grid-cols-2 gap-6 text-left">
+      {about?.values && about.values.length > 0 ? (
+        about.values.map((val, idx) => (
+          <li
+            key={idx}
+            className="flex items-start bg-gray-50 p-5 rounded-xl shadow-md hover:shadow-lg transition"
+          >
+            <span className="text-green-600 text-xl font-bold mr-3">
+              {idx + 1}.
+            </span>
+            <span
+  className="text-gray-700 text-base leading-relaxed"
+  dangerouslySetInnerHTML={{ __html: val || "N/A" }}
+/>
+
+          </li>
+        ))
+      ) : (
+        <p className="text-gray-500">No values found</p>
+      )}
+    </ul>
+  </div>
+</div>
+
     </div>
   );
 };
