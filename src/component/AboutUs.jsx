@@ -37,20 +37,28 @@ const AboutUs = () => {
   return (
     <div>
       {/* Top Section with Gradient */}
-      <div className="p-12 bg-gradient-to-r from-gray-100 via-yellow-50 to-[#f4ebe2] py-16 text-left rounded-b-3xl shadow-md">
-        <h2 className="text-4xl md:text-5xl font-bold text-black mb-3">About Us</h2>
-        <p className="text-green-700 mt-2 text-lg font-medium">
-          Delivering trusted financial solutions since 2013
-        </p>
-      </div>
+    <div className="p-12 bg-gradient-to-r from-gray-50 via-yellow-50 to-[#f4ebe2] py-16 rounded-b-3xl shadow-md text-left">
+  <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-2">
+    About Us
+  </h2>
+  <p className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
+    आमच्याबद्दल
+  </p>
+  <p className="text-green-700 mt-2 text-lg md:text-xl font-medium">
+    २०१३ पासून विश्वसनीय आर्थिक उपाय प्रदान करणे
+  </p>
+</div>
 
       {/* About Section */}
       <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="text-green-700 underline decoration-2 decoration-green-300">Maa Anusaya Urban</span>
-          </h2>
+         <h2 className="text-3xl md:text-4xl font-bold mb-6">
+  <span className="text-green-700">Maa Anusaya Urban</span>
+  <span className="block text-red-600 text-xl md:text-2xl mt-2">
+    माँ अनुसया अर्बन
+  </span>
+</h2>
           <div
             className="text-gray-700 text-base leading-relaxed"
             dangerouslySetInnerHTML={{ __html: about?.desc || "N/A" }}

@@ -16,13 +16,18 @@ function ContactUs() {
       {/* Banner */}
       <div className="h-64 md:h-80 bg-gradient-to-r from-[#E8DACD] to-[#f7c948] flex items-center px-6 md:px-12 lg:px-32">
         <div className="text-black">
-          <h1 className="text-3xl md:text-5xl lg:text-[4rem] font-bold">
-            Get in Touch
-          </h1>
-          <p className="text-[#6c9055f5] text-base md:text-lg mt-2">
-            We're here to assist you with all your banking queries
-          </p>
-        </div>
+  <h1 className="text-3xl md:text-4xl lg:text-[4rem] font-bold">
+    Get in Touch
+  </h1>
+  <p className="text-xl md:text-2xl text-red-600 font-semibold mt-1">
+    संपर्कात रहा
+  </p>
+  <p className="text-[#6c9055f5] flex flex-col text-base md:text-lg mt-4">
+    We're here to assist you with all your banking queries 
+    <span>तुमच्या सर्व बँकिंग प्रश्नांमध्ये मदत करण्यासाठी आम्ही येथे आहोत.</span>
+  </p>
+</div>
+
       </div>
 
       {/* Content */}

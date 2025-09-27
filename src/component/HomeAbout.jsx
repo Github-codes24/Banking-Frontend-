@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import  {Link} from "react-router-dom"
 const WelcomeSection = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -10,18 +10,25 @@ const WelcomeSection = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-10 py-10 text-center  ">
-      <h2 className="text-2xl md:text-3xl font-bold text-red-600 mb-4">
-        Welcome To Maa Anusaya Urban
-      </h2>
-      <p className="text-gray-700 leading-relaxed text-justify">
-        {expanded ? fullText : shortText}
+      <h2 className="text-2xl md:text-3xl font-bold text-red-600 mb-2">
+  Welcome To Maa Anusaya Urban
+</h2>
+<p className="block text-lg md:text-xl font-semibold text-gray-700 mt-2">
+  माँ अनुसया अर्बन मध्ये आपले स्वागत आहे.
+</p>
+      <p className="text-gray-700 leading-relaxed mt-3 text-justify">
+    माँ अनुसर्या अर्बन क्रेडिट को-ऑपरेटिव सोसायटी लिमिटेड रजि. नं. N.G.C.A. (M.A.C.S.) आम्ही R.C.R/119/2024 अंतर्गत जिल्ह्यातील ग्रामीण व शहरी भागातील मध्यमवर्गीय, निम्न मध्यमवर्गीय कुटुंबे, महिला व शेतकरी यांच्या आर्थिक उन्नतीसाठी व सुरक्षित भविष्य घडविण्यासाठी प्रयत्नशील आहोत.
+
+बचत व कर्जाच्या सोयीसुविधा उपलब्ध करून देणे हा आमचा मुख्य हेतू आहे. विविध योजनांद्वारे समाजातील सर्वसामान्यांना आर्थिक व सामाजिक विकासात सहभागी करून घेण्याचा आमचा संकल्प आहे.
+
+अनुसया अर्बन क्रेडिट को-ऑपरेटिव्ह सोसायटी आपल्या सदस्यांच्या उज्ज्वल भविष्यासाठी सातत्याने काम करत राहील.
       </p>
-      <button
-        onClick={() => setExpanded(!expanded)}
+      <Link
+       to="/about-us"
         className="mt-6 px-6 py-2 bg-red-600 text-white text-sm rounded-full shadow-md hover:bg-red-700 transition"
       >
-        {expanded ? "Read Less" : "Read More"}
-      </button>
+      Read More
+      </Link>
     </div>
   );
 };

@@ -31,7 +31,7 @@ import React, { useEffect, useState } from "react";
 const LegalDocuments = () => {
 
 
-   const [legalDocs, setlegalDocs] = useState([]);
+  const [legalDocs, setlegalDocs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -55,26 +55,26 @@ const LegalDocuments = () => {
 
 
   const isPDF = (url) => {
-  if (!url) return false;
-  const lowerUrl = url.toLowerCase();
-  return lowerUrl.endsWith(".pdf") || url.includes("/raw/upload/");
-};
+    if (!url) return false;
+    const lowerUrl = url.toLowerCase();
+    return lowerUrl.endsWith(".pdf") || url.includes("/raw/upload/");
+  };
 
-const isImage = (url) => {
-  if (!url) return false;
-  const lowerUrl = url.toLowerCase();
-  const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp"];
-  return imageExtensions.some((ext) => lowerUrl.endsWith(ext)) ;
-};
+  const isImage = (url) => {
+    if (!url) return false;
+    const lowerUrl = url.toLowerCase();
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp"];
+    return imageExtensions.some((ext) => lowerUrl.endsWith(ext));
+  };
 
   // Function to handle PDF download
   const handleDownload = (url, title) => {
     if (!url) return;
-    
+
     try {
       // Method 1: Simple download
       window.open(url, '_blank');
-      
+
       // Method 2: Force download (uncomment if needed)
       // const link = document.createElement('a');
       // link.href = url;
@@ -105,9 +105,16 @@ const isImage = (url) => {
   }
   return (
     <div className="py-10 px-4 md:px-10">
-   <div className="text-2xl font-semibold text-red-600 bg-gray-100 border-l-4 border-red-500 rounded-md shadow-sm px-4 py-3 mb-10">
-  Legal Documents
+
+<div className="bg-gray-100 border-l-4 border-red-500 rounded-md shadow-sm px-6 py-4 mb-10">
+  <h3 className="text-2xl font-bold text-red-600">
+    Legal Documents
+  </h3>
+  <p className="text-lg text-gray-700 font-medium">
+    कायदेशीर कागदपत्रे
+  </p>
 </div>
+
 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -117,7 +124,7 @@ const isImage = (url) => {
             className="border shadow-md rounded-md p-4 hover:shadow-lg transition-all duration-200 bg-white relative"
           >
             <h3 className="text-lg font-semibold text-center mb-4">{doc.title}</h3>
-            
+
             {/* Image Display */}
             {isImage(doc.docs) && (
               <div className="w-full h-48 flex items-center justify-center">
@@ -140,7 +147,7 @@ const isImage = (url) => {
                 </div>
               </div>
             )}
-            
+
             {/* PDF Display */}
             {isPDF(doc.docs) && (
               <div className="w-full h-48 bg-gray-50 rounded flex flex-col items-center justify-center border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors">
@@ -151,13 +158,13 @@ const isImage = (url) => {
                     <path d="M7.5,14.5C7.5,14.5 7.5,12.5 9.5,12.5C11.5,12.5 11.5,14.5 11.5,14.5V16.5C11.5,16.5 11.5,18.5 9.5,18.5C7.5,18.5 7.5,16.5 7.5,16.5V14.5M7.5,14.5H11.5M13.5,12.5V18.5M13.5,12.5H16.5C17.3284,12.5 18,13.1716 18,14V15C18,15.8284 17.3284,16.5 16.5,16.5H13.5" />
                   </svg>
                 </div>
-                
+
                 {/* PDF Info */}
                 <div className="text-center mb-3">
                   <p className="text-sm font-medium text-gray-700 mb-1">PDF Document</p>
                   <p className="text-xs text-gray-500">Click to view or download</p>
                 </div>
-                
+
                 {/* Download Button */}
                 <button
                   onClick={() => handleDownload(doc.docs, doc.title)}
@@ -170,7 +177,7 @@ const isImage = (url) => {
                 </button>
               </div>
             )}
-            
+
             {/* Fallback for unknown file types */}
             {!isImage(doc.docs) && !isPDF(doc.docs) && doc.docs && (
               <div className="w-full h-48 bg-gray-50 rounded flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
@@ -191,7 +198,7 @@ const isImage = (url) => {
                 </button>
               </div>
             )}
-            
+
             {/* No document available */}
             {!doc.docs && (
               <div className="w-full h-48 bg-gray-50 rounded flex flex-col items-center justify-center border-2 border-dashed border-gray-300">

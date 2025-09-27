@@ -29,8 +29,8 @@ const OurSchemes = () => {
   return (
     <div className="relative py-16 px-6 md:px-12 bg-gradient-to-r from-[#fdf2f8] via-[#E3B7B4] to-[#e0f2fe]">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold text-red-600 drop-shadow-md mb-12">
-          Our Schemes
+        <h2 className="text-4xl md:text-5xl font-extrabold text-center bg-gradient-to-r from-red-600 via-pink-600 to-red-700 text-transparent bg-clip-text drop-shadow-lg tracking-wide mb-12">
+          Our Schemes <span className="block text-lg md:text-xl font-semibold text-gray-700 mt-2">आमच्या योजना</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
