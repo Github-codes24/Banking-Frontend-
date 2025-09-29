@@ -7,7 +7,7 @@ const getFileType = (url) => {
   if (!url) return "other";
   const lowerUrl = url.toLowerCase();
   if (lowerUrl.endsWith(".pdf")) return "pdf";
-  if (/\.(jpg|jpeg|png|gif|webp|svg|bmp)$/.test(lowerUrl)) return "image";
+  if (/\.(jpg|jpeg|png|gif|webp|svg|avif|bmp)$/.test(lowerUrl)) return "image";
   if (/\.(mp4|webm|ogg|mov)$/.test(lowerUrl)) return "video";
   return "other";
 };
@@ -51,9 +51,16 @@ const GalleryDetails = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-extrabold text-center mb-10 text-yellow-600 tracking-wide uppercase">
-        {galleryItems[0]?.category || "Gallery"}
-      </h1>
+<h1 className="relative text-3xl font-extrabold text-center mb-10 uppercase tracking-widest text-yellow-600">
+  <span className="flex items-center justify-center gap-2">
+    <svg className="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927C9.469 1.839 10.53 1.839 10.951 2.927l1.286 3.536a1 1 0 00.95.69h3.748c1.074 0 1.519 1.372.655 2.02l-3.032 2.171a1 1 0 00-.364 1.118l1.286 3.535c.42 1.088-.785 1.986-1.792 1.339L10 13.011l-3.032 2.17c-1.007.647-2.211-.252-1.792-1.34l1.285-3.534a1 1 0 00-.363-1.119l-3.032-2.17c-.864-.648-.418-2.02.655-2.02h3.748a1 1 0 00.95-.69l1.286-3.535z" /></svg>
+    {galleryItems[0]?.category || "Gallery"}
+  </span>
+  <span className="block mt-2 mx-auto w-24 h-1 rounded bg-gradient-to-r from-yellow-300 via-yellow-600 to-yellow-300 opacity-60"></span>
+</h1>
+
+
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {galleryItems.map((item, index) => (

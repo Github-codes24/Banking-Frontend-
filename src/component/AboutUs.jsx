@@ -37,28 +37,28 @@ const AboutUs = () => {
   return (
     <div>
       {/* Top Section with Gradient */}
-    <div className="p-12 bg-gradient-to-r from-gray-50 via-yellow-50 to-[#f4ebe2] py-16 rounded-b-3xl shadow-md text-left">
-  <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-2">
-    About Us
-  </h2>
-  <p className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
-    आमच्याबद्दल
-  </p>
-  <p className="text-green-700 mt-2 text-lg md:text-xl font-medium">
-    २०१३ पासून विश्वसनीय आर्थिक उपाय प्रदान करणे
-  </p>
-</div>
+      <div className="p-12 bg-gradient-to-r from-gray-100 via-yellow-200 to-[#f4ebe2] py-16 rounded-b-3xl shadow-md text-left">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-2">
+          About Us
+        </h2>
+        <p className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
+          आमच्याबद्दल
+        </p>
+        <p className="text-green-700 mt-2 text-lg md:text-xl font-medium">
+          २०१३ पासून विश्वसनीय आर्थिक उपाय प्रदान करणे
+        </p>
+      </div>
 
       {/* About Section */}
       <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
-         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-  <span className="text-green-700">Maa Anusaya Urban</span>
-  <span className="block text-red-600 text-xl md:text-2xl mt-2">
-    माँ अनुसया अर्बन
-  </span>
-</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <span className="text-green-700">Maa Anusaya Urban</span>
+            <span className="block text-red-600 text-xl md:text-2xl mt-2">
+              माँ अनुसया अर्बन
+            </span>
+          </h2>
           <div
             className="text-gray-700 text-base leading-relaxed"
             dangerouslySetInnerHTML={{ __html: about?.desc || "N/A" }}
@@ -105,35 +105,35 @@ const AboutUs = () => {
       </div>
 
       {/* Core Values Section */}
-<div className="bg-white py-16">
-  <div className="max-w-6xl mx-auto px-6 text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-green-800">
-      आमचे मूल मूल्ये (Our Core Values)
-    </h2>
+      <div className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-green-800">
+            आमचे मूल मूल्ये (Our Core Values)
+          </h2>
 
-    <ul className="grid md:grid-cols-2 gap-6 text-left">
-      {about?.values && about.values.length > 0 ? (
-        about.values.map((val, idx) => (
-          <li
-            key={idx}
-            className="flex items-start bg-gray-50 p-5 rounded-xl shadow-md hover:shadow-lg transition"
-          >
-            <span className="text-green-600 text-xl font-bold mr-3">
-              {idx + 1}.
-            </span>
-            <span
-  className="text-gray-700 text-base leading-relaxed"
-  dangerouslySetInnerHTML={{ __html: val || "N/A" }}
-/>
+          <ul className="grid md:grid-cols-2 gap-6 text-left">
+            {about?.values && about.values.length > 0 ? (
+              about.values.map((val, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start bg-gray-50 p-5 rounded-xl shadow-md hover:shadow-lg transition"
+                >
+                  <span className="text-green-600 text-xl font-bold mr-3">
+                    {idx + 1}.
+                  </span>
+                  <span
+                    className="text-gray-700 text-base leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: val || "N/A" }}
+                  />
 
-          </li>
-        ))
-      ) : (
-        <p className="text-gray-500">No values found</p>
-      )}
-    </ul>
-  </div>
-</div>
+                </li>
+              ))
+            ) : (
+              <p className="text-gray-500">No values found</p>
+            )}
+          </ul>
+        </div>
+      </div>
 
     </div>
   );
