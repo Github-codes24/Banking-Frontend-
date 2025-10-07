@@ -65,7 +65,7 @@ function ContactUs() {
           {/* Map */}
           <div style={{ width: "100%", height: "400px" }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3713.369127214954!2d80.19626877526842!3d21.454028380303868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI3JzE0LjUiTiA4MMKwMTEnNTUuOCJF!5e0!3m2!1sen!2sin!4v1756470404001!5m2!1sen!2sin"
+             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d464.1715995350606!2d80.19731053410393!3d21.453884322565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2baeb77396d7bd%3A0xbcdddf6ad92f2625!2z4KSq4KWN4KSw4KSk4KS-4KSqIOCksuClieCkqOCljeCkuA!5e0!3m2!1shi!2sin!4v1759850258795!5m2!1shi!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
