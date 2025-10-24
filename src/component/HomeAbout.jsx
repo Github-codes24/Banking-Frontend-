@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import  {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 const WelcomeSection = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -11,23 +11,23 @@ const WelcomeSection = () => {
   return (
     <div className="max-w-4xl mx-auto px-10 py-10 text-center  ">
       <h2 className="text-2xl md:text-3xl font-bold text-red-600 mb-2">
-  Welcome To Maa Anusaya Urban
-</h2>
-<p className="block text-lg md:text-xl font-semibold text-gray-700 mt-2">
-माँ अनुसया अर्बन को-ऑपरेटिव्ह बँकेत आपले हार्दिक स्वागत आहे!
-</p>
+        Welcome To Maa Anusaya Urban
+      </h2>
+      <p className="block text-lg md:text-xl font-semibold text-gray-700 mt-2">
+        माँ अनुसया अर्बन को-ऑपरेटिव्ह बैंक  आपले हार्दिक स्वागत आहे!
+      </p>
       <p className="text-gray-700 leading-relaxed mt-3 text-justify">
-    माँ अनुसया अर्बन क्रेडिट को-ऑपरेटिव सोसायटी लिमिटेड रजि. नं. N.G.C.A. (M.A.C.S.) आम्ही R.C.R/119/2024 अंतर्गत जिल्ह्यातील ग्रामीण व शहरी भागातील मध्यमवर्गीय, निम्न मध्यमवर्गीय कुटुंबे, महिला व शेतकरी यांच्या आर्थिक उन्नतीसाठी व सुरक्षित भविष्य घडविण्यासाठी प्रयत्नशील आहोत.
+        माँ अनुसर्या अर्बन क्रेडिट को-ऑपरेटिव सोसायटी लिमिटेड (रजि. नं. J.J.T.C.) और हम R.C.R/119/2024 की शुरुआत जिले के ग्रामीण व शहरी क्षेत्र के मेहनती, निम्न मध्यम वर्ग, महिलाओं और किसानों के सुविधा जनक व सुरक्षित बैंकिंग सेवाएं प्रदान करने के उद्देश्य से कर रहे हैं।
 
-बचत व कर्जाच्या सोयीसुविधा उपलब्ध करून देणे हा आमचा मुख्य हेतू आहे. विविध योजनांद्वारे समाजातील सर्वसामान्यांना आर्थिक व सामाजिक विकासात सहभागी करून घेण्याचा आमचा संकल्प आहे.
+हमारे प्रयास का मुख्य उद्देश्य लोगों को उनकी जरूरतों के अनुसार विभिन्न पेशकशों और वित्तीय योजनाओं के माध्यम से समान के आर्थिक और सामाजिक विकास में सहयोग देना है।
 
-अनुसया अर्बन क्रेडिट को-ऑपरेटिव्ह सोसायटी आपल्या सदस्यांच्या उज्ज्वल भविष्यासाठी सातत्याने काम करत राहील.
+मैं अनुसर्या अर्बन क्रेडिट को-ऑपरेटिव सोसायटी अपने ग्राहकों की वित्तीय और लक्ष्यों की बेहतरी हेतु हमेशा तत्पर है। हम मिलकर अपने समुदाय के उत्कृष्ट भविष्य के लिए काम करेंगे।
       </p>
       <Link
-       to="/about-us"
+        to="/about-us"
         className="mt-6 px-6 py-2 bg-red-600 text-white text-sm rounded-full shadow-md hover:bg-red-700 transition"
       >
-      Read More
+        Read More
       </Link>
     </div>
   );
