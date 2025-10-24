@@ -62,7 +62,7 @@ const OurSchemes = () => {
 
                 {/* Content */}
                 <div className="flex-1 flex flex-col p-6">
-                  <div className="mb-4 text-gray-600 text-sm text-center">
+                  <div className="mb-4 text-gray-600 text-sm text-left">
                     {shortDesc}
                     {showReadMore && (
                       <Link
