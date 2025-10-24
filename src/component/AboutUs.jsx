@@ -25,15 +25,7 @@ const AboutUs = () => {
     fetchAboutUs();
   }, []);
 
-  // Helper: split desc (if available) into paragraphs on double newlines or periods + space.
-  const paragraphs =
-    about?.desc
-      ? about.desc
-        .split(/\n\s*\n|\.\s+/)
-        .map((para) => para.trim())
-        .filter(Boolean)
-      : [];
-
+ 
   return (
     <div>
       {/* Top Section with Gradient */}
