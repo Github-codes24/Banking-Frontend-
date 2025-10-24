@@ -45,7 +45,7 @@ const AboutUs = () => {
           आमच्याबद्दल
         </p>
         <p className="text-green-700 mt-2 text-lg md:text-xl font-medium">
-          २०१३ पासून विश्वसनीय आर्थिक उपाय प्रदान करणे
+          {/* २०१३ पासून विश्वसनीय आर्थिक उपाय प्रदान करणे */}
         </p>
       </div>
 
